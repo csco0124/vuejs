@@ -21,6 +21,7 @@ const store = new Vuex.Store({
   actions: {
     getServerEnvData: function (context) {
      axios.get('/getServerEnv.json').then(function(response) {
+       console.log(response.data);
         context.commit('setServerEnv', response);
       });
     }
