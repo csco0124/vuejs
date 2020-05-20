@@ -23,6 +23,15 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  methods:{
+    
+  },
+  computed:{
+    correntPagePath : function(){
+      alert(this.$route.path);
+      return this.$route.path;
+    }
+  },
   components: {
     'Header': Header,
     'Left': Left
@@ -31,4 +40,8 @@ export default {
 </script>
 
 <style>
+.router-link-active {
+  color: white;
+  background-color: red;
+}
 </style>

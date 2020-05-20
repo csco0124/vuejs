@@ -1,8 +1,8 @@
 <template>
   <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-      <li class="active"><router-link to="/Overview">Overview<span class="sr-only">(current)</span></router-link></li>
-      <li><router-link to="/Reports">Reports</router-link></li>
+      <router-link tag="li" to="/Overview" active-class="active"><a>Overview</a></router-link>
+      <router-link tag="li" to="/Reports" active-class="active"><a>Reports</a></router-link>
       <li><a href="#">Analytics</a></li>
       <li><a href="#">nav1-4</a></li>
     </ul>
