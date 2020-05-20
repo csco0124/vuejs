@@ -16,11 +16,9 @@ export default {
       message : ""
     }
   },
-  /* computed: {
-    getComServerName() {
-      this.message = this.$store.getters.getServer;
-    }
-  }, */
+  computed: {
+    
+  },
   methods:{
     getServerNameChange() {
       this.$store.dispatch('getServerEnvData');
