@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         <Left></Left>
-        <Contents></Contents>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -13,10 +13,11 @@
 <script>
 import Header from './components/Header.vue'
 import Left from './components/Left.vue'
-import Contents from './components/Contents.vue'
+import Router from './router/Router'
 
 export default {
   name: 'app',
+  router: Router,
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -24,8 +25,7 @@ export default {
   },
   components: {
     'Header': Header,
-    'Left': Left,
-    'Contents': Contents
+    'Left': Left
   }
 }
 </script>
