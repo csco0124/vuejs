@@ -13,7 +13,7 @@
 export default {
   data(){
     return {
-      message : "sssss"
+      message : ""
     }
   },
   /* computed: {
@@ -24,8 +24,6 @@ export default {
   methods:{
     getServerNameChange() {
       this.$store.dispatch('getServerEnvData');
-      alert(this.message);
-      this.message = "vvv";
     },
     getServerName() {
       alert(this.$store.state.serverName);

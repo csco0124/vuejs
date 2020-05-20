@@ -10,19 +10,16 @@ const store = new Vuex.Store({
   },
   getters: {
     getServer : function(state){
-      console.log('33333 : ' + state.serverName);
       return state.serverName;
     }
   },
   mutations: {
     setServerEnv: function (state, payload) {
-      console.log('222222 : ' + payload + ":" + state.serverName);
       state.serverName = payload.data;
     }
   },
   actions: {
     getServerEnvData: function (context) {
-      console.log('111111');
      axios.get('/getServerEnv.json').then(function(response) {
         context.commit('setServerEnv', response);
       });
