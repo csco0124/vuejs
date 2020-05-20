@@ -17,16 +17,15 @@ const store = new Vuex.Store({
   mutations: {
     setServerEnv: function (state, payload) {
       console.log('222222 : ' + payload + ":" + state.serverName);
-      state.serverName = "aaaa1";
+      state.serverName = payload.data;
     }
   },
   actions: {
     getServerEnvData: function (context) {
       console.log('111111');
-      context.commit('setServerEnv', "aaaa");
-     /* axios.get('/getServerEnv.json').then(function(response) {
+     axios.get('/getServerEnv.json').then(function(response) {
         context.commit('setServerEnv', response);
-      }); */
+      });
     }
   }
 })
