@@ -14,12 +14,12 @@
 import Header from './components/Header.vue'
 import Left from './components/Left.vue'
 import Router from './router/Router'
-import Store from './store/Store'
+import store from './store/Store'
 
 export default {
   name: 'app',
+  store: store,
   router: Router,
-  store: Store,
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
