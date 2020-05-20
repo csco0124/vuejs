@@ -1,5 +1,7 @@
 package com.sp.app.main.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author 김동건 (dgkim@bsgglobal.com)
@@ -32,6 +35,17 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return "main";
+	}
+	
+	@RequestMapping(value = "/getServerEnv.json")
+	public @ResponseBody String getServerEnv() {
+		String serverEnv = "";
+		try {
+			serverEnv = env.getProperty("spring.profiles.active");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return serverEnv;
 	}
 	
 }

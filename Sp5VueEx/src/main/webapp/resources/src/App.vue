@@ -14,17 +14,19 @@
 import Header from './components/Header.vue'
 import Left from './components/Left.vue'
 import Router from './router/Router'
+import Store from './store/Store'
 
 export default {
   name: 'app',
   router: Router,
+  store: Store,
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
   methods:{
-    
+
   },
   computed:{
     correntPagePath : function(){
@@ -40,8 +42,5 @@ export default {
 </script>
 
 <style>
-.router-link-active {
-  color: white;
-  background-color: red;
-}
+
 </style>
