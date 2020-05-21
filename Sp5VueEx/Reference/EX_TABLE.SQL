@@ -1,0 +1,24 @@
+﻿create table LIST(
+	SEQ INT IDENTITY(1,1) NOT NULL,
+	TITLE VARCHAR(100),
+	CONTENTS VARCHAR(100),
+	INSERT_DATA DATETIME default GETDATE()
+);
+
+
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다1', '컨텐츠입니다.(Contents)1');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다2', '컨텐츠입니다.(Contents)2');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다3', '컨텐츠입니다.(Contents)3');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다4', '컨텐츠입니다.(Contents)4');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다5', '컨텐츠입니다.(Contents)5');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다6', '컨텐츠입니다.(Contents)6');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다7', '컨텐츠입니다.(Contents)7');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다8', '컨텐츠입니다.(Contents)8');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다9', '컨텐츠입니다.(Contents)9');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다10', '컨텐츠입니다.(Contents)10');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다11', '컨텐츠입니다.(Contents)11');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다12', '컨텐츠입니다.(Contents)12');
+INSERT INTO LIST (TITLE, CONTENTS) VALUES ('제목입니다13', '컨텐츠입니다.(Contents)13');
+
+
+select * from LIST;
