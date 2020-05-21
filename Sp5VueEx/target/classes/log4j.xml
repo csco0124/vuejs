@@ -8,7 +8,7 @@
   <Loggers>
   	
   	<!-- Application Loggers -->
-  	<logger name="kr.co.sp5" level="info"/>
+  	<logger name="com.sp.app" level="info"/>
 		
 	<!-- DB Resultset Loggers -->
 	<logger name="jdbc.sqltiming" level="info" />
