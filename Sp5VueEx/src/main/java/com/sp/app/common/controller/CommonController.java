@@ -18,6 +18,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author 김동건 (dgkim@bsgglobal.com)
@@ -30,12 +31,12 @@ public class CommonController {
 	@Autowired
 	Environment env;
 	
-	@RequestMapping("/")
+	@RequestMapping(value = "/")
 	public String main() throws Exception{
 		return "main";
 	}
 	
-	@RequestMapping("/i18nProperties/{propertiesName}")
+	@RequestMapping(value = "/i18nProperties/{propertiesName}")
 	public void i18nProperties(@PathVariable String propertiesName, HttpServletRequest req, HttpServletResponse res) throws Exception {
 		OutputStream outputStream = res.getOutputStream();
 		//Locale locale = RequestContextUtils.getLocale(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());	//사용자 언어
