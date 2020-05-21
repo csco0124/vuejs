@@ -30,6 +30,11 @@ public class CommonController {
 	@Autowired
 	Environment env;
 	
+	@RequestMapping("/")
+	public String main() throws Exception{
+		return "main";
+	}
+	
 	@RequestMapping("/i18nProperties/{propertiesName}")
 	public void i18nProperties(@PathVariable String propertiesName, HttpServletRequest req, HttpServletResponse res) throws Exception {
 		OutputStream outputStream = res.getOutputStream();
