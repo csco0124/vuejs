@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @author 김동건 (dgkim@bsgglobal.com)
+ * @author 源��룞嫄� (dgkim@bsgglobal.com)
  */
 @Controller
 public class CommonController {
@@ -30,16 +30,11 @@ public class CommonController {
 	
 	@Autowired
 	Environment env;
-	
-	@RequestMapping(value = "/")
-	public String main() throws Exception{
-		return "main";
-	}
-	
+		
 	@RequestMapping(value = "/i18nProperties/{propertiesName}")
 	public void i18nProperties(@PathVariable String propertiesName, HttpServletRequest req, HttpServletResponse res) throws Exception {
 		OutputStream outputStream = res.getOutputStream();
-		//Locale locale = RequestContextUtils.getLocale(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());	//사용자 언어
+		//Locale locale = RequestContextUtils.getLocale(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());	//�궗�슜�옄 �뼵�뼱
 		Resource resource = new ClassPathResource("/properties/i18n/" + propertiesName + ".properties");
 		InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream(), Charset.forName("UTF-8"));
 		List<String> readLines = IOUtils.readLines(inputStreamReader);
