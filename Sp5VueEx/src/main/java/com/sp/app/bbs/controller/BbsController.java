@@ -40,7 +40,7 @@ public class BbsController {
 
 		List<HashMap<String, Object>> mapList = null;
 		try {
-			mapList = bbsServiceImpl.selectDbBbsListAsMap();
+			//mapList = bbsServiceImpl.selectDbBbsListAsMap();
 
 		} catch (Exception e) {
 			e.printStackTrace();
