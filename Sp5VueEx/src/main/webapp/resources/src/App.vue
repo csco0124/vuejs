@@ -26,9 +26,9 @@ export default {
     }
   },
   methods: {
-    movePage: function() {
-      console.log('movePage....');
-      this.$router.push({path : '/Overview'});
+    movePage: function(path) {
+      console.log('movePage.... : ' + path);
+      this.$router.push({path : path});
     }
   },
   computed:{

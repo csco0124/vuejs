@@ -2,7 +2,7 @@
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Dashboard - Reports</h1>
     <button type="button" v-on:click="dataRegistPop" class="btn btn-primary pull-right">Regist</button>
-    <button type="button" v-on:click="pageMove('Overview')" class="btn btn-primary pull-right">go Home</button>
+    <button type="button" v-on:click="pageMove('/Overview')" class="btn btn-primary pull-right">go Home</button>
     <h2 class="sub-header">DATA LIST</h2>
     <div class="table-responsive">
       <table class="table table-striped" v-clock>
@@ -89,7 +89,7 @@ export default {
     },
     pageMove(path){
       alert("현재 Path1 : " + this.$route.path);
-      this.$emit('go-page');
+      this.$emit('go-page', path);
     }
   },
   mounted() {
