@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     movePage: function(path) {
-      console.log('movePage.... : ' + path);
       this.$router.push({path : path});
     }
   },
