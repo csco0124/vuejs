@@ -6,7 +6,7 @@ public class BbsDto {
 	private Integer seq;
 	private String title;
 	private String contents;
-	private Timestamp insert_data;
+	private Timestamp insert_date;
 	
 	public Integer getSeq() {
 		return seq;
@@ -26,10 +26,10 @@ public class BbsDto {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public Timestamp getInsert_data() {
-		return insert_data;
+	public Timestamp getInsert_date() {
+		return insert_date;
 	}
-	public void setInsert_data(Timestamp insert_data) {
-		this.insert_data = insert_data;
+	public void setInsert_date(Timestamp insert_date) {
+		this.insert_date = insert_date;
 	}
 }

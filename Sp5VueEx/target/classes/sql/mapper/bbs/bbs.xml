@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sp.app.bbs.dao.BbsDao">
 	
-	<!-- <select id="selectDbBbsListAsMap" resultType="map" parameterType="bbsDto">
+	<select id="selectDbBbsListAsMap" resultType="com.sp.app.common.util.LowerKeyMap" parameterType="bbsDto">
 		SELECT SEQ,
 		       TITLE,
 		       CONTENTS,
-		       INSERT_DATA
+		       INSERT_DATE
 		FROM   LIST
 		WHERE  1 = 1
 		<if test="title != null and title != ''">
@@ -15,6 +15,6 @@
 		<if test="contents != null and contents != ''">
 			AND CONTENTS LIKE '%'+#{contents, jdbcType=VARCHAR}+'%'
 		</if>
-	</select> -->
+	</select>
 	
 </mapper>
