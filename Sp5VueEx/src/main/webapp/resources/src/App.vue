@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <div>
     <Header></Header>
     <div class="container-fluid">
       <div class="row">
         <Left></Left>
-        <router-view></router-view>
+        <router-view v-on:go-page="movePage"></router-view>
       </div>
     </div>
   </div>
@@ -13,8 +13,6 @@
 <script>
 import Header from './components/Header.vue'
 import Left from './components/Left.vue'
-import Overview from './components/Overview.vue'
-import Reports from './components/Reports.vue'
 import Router from './router/Router'
 import store from './store/Store'
 
@@ -24,26 +22,27 @@ export default {
   router: Router,
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
   },
-  methods:{
-
+  methods: {
+    movePage: function() {
+      console.log('movePage....');
+      this.$router.push({path : '/Overview'});
+    }
   },
   computed:{
-    correntPagePath : function(){
-      alert(this.$route.path);
-      return this.$route.path;
-    }
+    
   },
   components: {
     'Header': Header,
-    'Left': Left,
-    'Overview' : Overview,
-    'Reports' : Reports
+    'Left': Left
   }
 }
 </script>
 
 <style>
+[v-clock] {
+  display: none;
+}
 </style>

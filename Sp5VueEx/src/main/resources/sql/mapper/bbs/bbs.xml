@@ -15,6 +15,12 @@
 		<if test="contents != null and contents != ''">
 			AND CONTENTS LIKE '%'+#{contents, jdbcType=VARCHAR}+'%'
 		</if>
+		ORDER BY SEQ DESC
 	</select>
+	
+	<insert id="insertDbBbsList" parameterType="bbsDto">
+		INSERT INTO LIST(TITLE, CONTENTS)
+		VALUES(#{title, jdbcType=VARCHAR}, #{contents, jdbcType=VARCHAR})
+	</insert>
 	
 </mapper>

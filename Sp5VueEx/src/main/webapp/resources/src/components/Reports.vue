@@ -1,45 +1,46 @@
 <template>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Dashboard - Reports</h1>
-    <button v-on:click="openPop">모달 실행</button>
-    <h2 class="sub-header">Reports</h2>
+    <button type="button" v-on:click="dataRegistPop" class="btn btn-primary pull-right">Regist</button>
+    <button type="button" v-on:click="pageMove('Overview')" class="btn btn-primary pull-right">go Home</button>
+    <h2 class="sub-header">DATA LIST</h2>
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped" v-clock>
         <thead>
-          <tr>
+           <tr>
             <th>#seq</th>
             <th>TITLE</th>
             <th>CONTENTS</th>
             <th>INSERT DATE</th>
           </tr>
         </thead>
-        <tbody>
+        <transition-group name="list" tag="tbody">
           <tr v-for="(item) in dataList" v-bind:key="item.seq">
             <td>{{item.seq}}</td>
             <td>{{item.title}}</td>
             <td>{{item.contents}}</td>
             <td>{{item.insert_date}}</td>
           </tr>
-        </tbody>
+        </transition-group>
       </table>
     </div>
     <modal v-if="showModal" @close="showModal = false">
-      <h4 slot="header" class="modal-title">Test</h4>
+      <h4 slot="header" class="modal-title">Data Regist</h4>
       <div slot="contents">
         <form>
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Enter title">
+            <input type="text" v-model="title" class="form-control" id="title" placeholder="Enter title">
             <small class="form-text text-muted">Enter title Text</small>  
           </div>
           <div class="form-group">
-          <label for="title">Contents</label>
-            <input type="text" class="form-control" id="Contents" placeholder="Enter Contents">
+          <label for="contents">Contents</label>
+            <input type="text" v-model="contents" class="form-control" id="contents" placeholder="Enter Contents">
             <small class="form-text text-muted">Enter Contents Text</small>
           </div>
         </form>
       </div>
-      <button slot="footer" type="button" class="btn btn-primary">Save changes</button>
+      <button slot="footer" v-on:click="insertData" type="button" class="btn btn-primary">Save changes</button>
 	  </modal>
   </div>
 </template>
@@ -51,34 +52,48 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      showModal: false,
-      dataList: []
+      showModal : false,
+      title : "",
+      contents : "",
+      dataList : []
     }
   },
   computed:{
     
   },
   methods:{
-    openPop(){
+    dataRegistPop(){
+      this.title = "";
+      this.contents = "";
       this.showModal = true;
-      this.getDataList();
     },
     getDataList(){
-       axios.post('/selectDbBbsListAsMap.json', {title: "1"}).then(response => {
-        console.log(response.data);
+      let form = new FormData();
+      //form.append('title', '1');
+      axios.post('/selectDbBbsListAsMap.json', form).then(response => {
         this.dataList = response.data; 
       });
+    },
+    insertData(){
+      let form = new FormData();
+      form.append('title', this.title);
+      form.append('contents', this.contents);
+      axios.post('/insertDbBbsList.json', form).then(response => {
+        this.showModal = false;
+        if(response.data.result != "S"){
 
+        }else{
+          this.getDataList();
+        }
+      });
+    },
+    pageMove(path){
+      alert("현재 Path1 : " + this.$route.path);
+      this.$emit('go-page');
     }
   },
   mounted() {
-    //this.getDataList();
-    
-    /* this.dataList = [
-      { seq: 1, title:'1111' , contents:'2221', insert_date:'3331'},
-      { seq: 2, title:'1112' , contents:'2222', insert_date:'3332'},
-      { seq: 3, title:'1113' , contents:'2223', insert_date:'3333'}
-    ] */
+    this.getDataList();
   },
   components: {
     Modal: Modal
@@ -87,5 +102,14 @@ export default {
 </script>
 
 <style scope>
-
+.list-move {
+  transition: 1s;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>

@@ -36,15 +36,30 @@ public class BbsController {
 	Properties properties;
 
 	@RequestMapping(value = "/selectDbBbsListAsMap.json")
-	public @ResponseBody List<HashMap<String, Object>> selectDbBbsListAsMap(Model model) {
+	public @ResponseBody List<HashMap<String, Object>> selectDbBbsListAsMap(BbsDto bbsDto) {
 
 		List<HashMap<String, Object>> mapList = null;
 		try {
-			mapList = bbsServiceImpl.selectDbBbsListAsMap();
+			mapList = bbsServiceImpl.selectDbBbsListAsMap(bbsDto);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mapList;
+	}
+	
+	@RequestMapping(value = "/insertDbBbsList.json")
+	public @ResponseBody HashMap<String, Object> insertDbBbsList(BbsDto bbsDto) {
+
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			bbsServiceImpl.insertDbBbsList(bbsDto);
+			resultMap.put("result", "S");
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMap.put("result", "E");
+			resultMap.put("errorMsg", e.getMessage());
+		}
+		return resultMap;
 	}
 }
