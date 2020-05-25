@@ -3,7 +3,7 @@
     <ul class="nav nav-sidebar">
       <router-link tag="li" to="/Overview" active-class="active"><a>Overview</a></router-link>
       <router-link tag="li" to="/Reports" active-class="active"><a>Reports</a></router-link>
-      <li><a href="#">Analytics</a></li>
+      <router-link tag="li" to="/Editor" active-class="active"><a>Editor</a></router-link>
       <li><a href="#">nav1-4</a></li>
     </ul>
     <ul class="nav nav-sidebar">

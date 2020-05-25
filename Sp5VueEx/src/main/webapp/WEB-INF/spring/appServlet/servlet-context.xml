@@ -41,10 +41,11 @@
 		<!-- <property name="maxUploadSize" value="104857600" /> 업로드파일 최대용량을 100메가로 설정했다. (무제한은 -1 [디폴트값]) -->
 	</bean>
 	
-	<mvc:resources mapping="/vue/**" location="/resources/" />
-	<mvc:resources mapping="/css/**" location="/resources/css/" />
-	<mvc:resources mapping="/js/**" location="/resources/js/" />
-	<mvc:resources mapping="/img/**" location="/resources/img/" />
+	<mvc:resources mapping="/vue/**" 		location="/resources/" />
+	<mvc:resources mapping="/css/**" 		location="/resources/css/" />
+	<mvc:resources mapping="/js/**" 		location="/resources/js/" />
+	<mvc:resources mapping="/img/**" 		location="/resources/img/" />
+	<mvc:resources mapping="/wysiwyg/**" 	location="/resources/wysiwyg/" />
 
 	<context:component-scan base-package="com.sp.app" />
 	

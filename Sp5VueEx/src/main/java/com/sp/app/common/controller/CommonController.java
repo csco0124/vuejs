@@ -1,5 +1,6 @@
 package com.sp.app.common.controller;
 
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -16,12 +17,19 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.sp.app.common.util.CommonUtil;
+
 
 /**
- * @author 源��룞嫄� (dgkim@bsgglobal.com)
+ * @author dgkim@bsgglobal.com
  */
 @Controller
 public class CommonController {
@@ -41,5 +49,24 @@ public class CommonController {
 		IOUtils.writeLines(readLines, null, outputStream, "UTF-8");
 		inputStreamReader.close();
 		outputStream.close();
+	}
+	
+	@RequestMapping("/imageUpload.ajax")
+	public @ResponseBody String imageUpload(Model model, @RequestParam("files") MultipartFile[] files) {
+		try {
+			if(files.length > 0) {
+				String filePath = CommonUtil.createFilePathFolder();
+				for (MultipartFile file : files) {
+					System.out.println("file : " + file);
+					if(file.getSize() > 0) {
+						File convFile = new File(filePath + File.separator + file.getOriginalFilename());
+						file.transferTo(convFile);
+					}
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "aaa/aaa";
 	}
 }
