@@ -6,13 +6,16 @@
       <div class="container" style="width:90%;">
         <textarea class="summernote" id="summernote"><p>Seasons <b>coming up</b></p></textarea>
       </div>
-      <input type="file" ref="editorPageFile0" name="files">
-      <input type="file" ref="editorPageFile1" name="files">
-      <input type="submit" v-on:click="registContents">
-    <alert v-if="showAlert" @close="showAlert = false">
+      <div id="fileTemplate"></div>
+
+      <button type="button" v-on:click="addFile" class="btn btn-outline-info">파일추가</button>
+      <br><br>
+      <button type="button" v-on:click="registContents" class="btn btn-primary pull-left">저장</button>
+    <alert v-if="showAlert" v-on:close="showAlert = false">
       <div slot="contents">
         111w
       </div>
+      <button slot="footer" type="button" class="btn btn-primary pull-right">저장</button>
 	  </alert> 
   </div>
 </template>
@@ -34,14 +37,19 @@ export default {
     getAlert() {
       this.showAlert = true;
     },
+    addFile(){
+      let fileObj = document.createElement("input");
+      fileObj.setAttribute('type', "file");
+      fileObj.setAttribute('name', "files");
+      document.getElementById("fileTemplate").appendChild(fileObj);
+    },
     registContents(){
       const formData = new FormData();
       formData.append("contents", $('.summernote').summernote('code'));
 
-      let file0 = this.$refs.editorPageFile0.files[0];
-      formData.append('files', file0);
-      let file1 = this.$refs.editorPageFile1.files[0];
-      formData.append('files', file1);
+      for(var i=0; i<document.getElementsByName("files").length; i++){
+        formData.append('files', document.getElementsByName("files")[i].files[0]);
+      }
 
       axios.post( '/editorUpload',
         formData,
