@@ -8,7 +8,7 @@ function summerImageUpload(selector, files){
         data: formData,
         type: 'POST',
         success: function(result){
-            //alert(window.location.origin + ":" + result);
+            alert(window.location.origin + ":" + result);
             // 테스트
           	var imgUrl = "https://summernote.org/img/img_gnb_twitter.png";
 			var image = $('<img>').attr("src", imgUrl);
