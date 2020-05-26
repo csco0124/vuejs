@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,10 @@ public class BbsController {
 				String filePath = CommonUtil.createFilePathFolder();
 				for (MultipartFile file : files) {
 					if(file.getSize() > 0) {
-						File convFile = new File(filePath + File.separator + file.getOriginalFilename());
+						String fileName = CommonUtil.getUUID();
+						String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+						File convFile = new File(filePath.split("\\^\\^\\^")[0] + File.separator + fileName + "." + extension);
+						String fileLinkUrl = filePath.split("\\^\\^\\^")[1] + "/" + fileName + "." + extension;
 						file.transferTo(convFile);
 					}
 				}
