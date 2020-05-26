@@ -3,15 +3,12 @@
     <h1 class="page-header">Dashboard - Editor</h1>
     <h2 class="sub-header">Editor</h2>
     <button v-on:click="getAlert">안내창</button><br>
-    <form method="post" action="/editorUpload" enctype="multipart/form-data">
-      <div class="container">
-        <textarea class="summernote" id="summernote" name="editordata"><p>Seasons <b>coming up</b></p></textarea>
-        <a href="javascript:void(0);" onclick="javascript:getCode()">aaaa</a>
+      <div class="container" style="width:90%;">
+        <textarea class="summernote" id="summernote"><p>Seasons <b>coming up</b></p></textarea>
       </div>
-      <input type="file" name="files">
-      <input type="file" name="files">
-      <input type="submit">
-    </form>
+      <input type="file" ref="editorPageFile0" name="files">
+      <input type="file" ref="editorPageFile1" name="files">
+      <input type="submit" v-on:click="registContents">
     <alert v-if="showAlert" @close="showAlert = false">
       <div slot="contents">
         111w
@@ -27,7 +24,8 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      showAlert : false
+      showAlert : false,
+      editorPageFile : ""
     }
   },
   computed: {
@@ -36,6 +34,29 @@ export default {
   methods:{
     getAlert() {
       this.showAlert = true;
+    },
+    registContents(){
+      const formData = new FormData();
+      formData.append("contents", $('.summernote').summernote('code'));
+
+      let file0 = this.$refs.editorPageFile0.files[0];
+      formData.append('files', file0);
+      let file1 = this.$refs.editorPageFile1.files[0];
+      formData.append('files', file1);
+
+      axios.post( '/editorUpload',
+        formData,
+          {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          }
+      ).then(function(){
+        console.log('SUCCESS!!');
+      })
+      .catch(function(){
+        console.log('FAILURE!!');
+      });
     }
   },
   mounted() {

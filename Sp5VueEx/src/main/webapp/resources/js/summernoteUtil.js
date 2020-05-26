@@ -8,13 +8,9 @@ function summerImageUpload(selector, files){
         data: formData,
         type: 'POST',
         success: function(result){
-            alert(window.location.origin + ":" + result);
-            // 테스트
-          	var imgUrl = "https://summernote.org/img/img_gnb_twitter.png";
+          	var imgUrl = result;
 			var image = $('<img>').attr("src", imgUrl);
-			alert(image + ":" + image[0]);
 			$(selector).summernote("insertNode", image[0]);
-			// 테스트 end
         }
 	});
 }

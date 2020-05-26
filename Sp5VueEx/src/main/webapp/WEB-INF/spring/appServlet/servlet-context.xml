@@ -46,6 +46,7 @@
 	<mvc:resources mapping="/js/**" 		location="/resources/js/" />
 	<mvc:resources mapping="/img/**" 		location="/resources/img/" />
 	<mvc:resources mapping="/wysiwyg/**" 	location="/resources/wysiwyg/" />
+	<mvc:resources mapping="/upload/**" 	location="/resources/upload/" />
 
 	<context:component-scan base-package="com.sp.app" />
 	

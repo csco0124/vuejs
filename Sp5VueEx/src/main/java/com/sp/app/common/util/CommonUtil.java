@@ -32,7 +32,7 @@ public class CommonUtil {
 	
 	/**
 	 * 파일업로드 위한 새폴더 생성
-	 * @return
+	 * @return 파일 전체경로^^^파일 링크경로 (split 으로 잘라서 활용 가능)
 	 */
 	public static String createFilePathFolder() {
 		String path = properties.getProperty("common.filepath");
@@ -46,7 +46,7 @@ public class CommonUtil {
 		if(!dir.exists()){
 			dir.mkdirs();
 		}
-		return dir.getAbsolutePath();
+		return dir.getAbsolutePath() + "^^^" + dateFolder;
 	}
 	
 	/**

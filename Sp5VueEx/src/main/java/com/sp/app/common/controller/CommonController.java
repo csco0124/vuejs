@@ -5,10 +5,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +40,9 @@ public class CommonController {
 	
 	@Autowired
 	Environment env;
+	
+	@Autowired
+	Properties properties;
 		
 	@RequestMapping(value = "/i18nProperties/{propertiesName}")
 	public void i18nProperties(@PathVariable String propertiesName, HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -53,13 +58,16 @@ public class CommonController {
 	
 	@RequestMapping("/imageUpload.ajax")
 	public @ResponseBody String imageUpload(Model model, @RequestParam("files") MultipartFile[] files) {
+		String fileLinkUrl = "";
 		try {
 			if(files.length > 0) {
 				String filePath = CommonUtil.createFilePathFolder();
 				for (MultipartFile file : files) {
-					System.out.println("file : " + file);
 					if(file.getSize() > 0) {
-						File convFile = new File(filePath + File.separator + file.getOriginalFilename());
+						String fileName = CommonUtil.getUUID();
+						String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+						File convFile = new File(filePath.split("\\^\\^\\^")[0] + File.separator + fileName + "." + extension);
+						fileLinkUrl = filePath.split("\\^\\^\\^")[1] + "/" + fileName + "." + extension;
 						file.transferTo(convFile);
 					}
 				}
@@ -67,6 +75,7 @@ public class CommonController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "aaa/aaa";
+		return properties.getProperty("common.fileLinkPath") + "/" + fileLinkUrl;
 	}
+	
 }
