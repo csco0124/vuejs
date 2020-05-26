@@ -24,8 +24,7 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      showAlert : false,
-      editorPageFile : ""
+      showAlert : false
     }
   },
   computed: {
