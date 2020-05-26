@@ -33,6 +33,9 @@ export default {
   computed:{
     
   },
+  created: function () {
+      this.$store.dispatch('getServerEnvData');
+  },
   components: {
     'Header': Header,
     'Left': Left
