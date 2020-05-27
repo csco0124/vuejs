@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 public class BbsFileContentsDto {
 	private Integer seq;
 	private String contents;
+	private String file1_name;
+	private String file2_name;
 	private String file1_path;
 	private String file2_path;
 	private Timestamp insert_date;
@@ -20,6 +22,18 @@ public class BbsFileContentsDto {
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	public String getFile1_name() {
+		return file1_name;
+	}
+	public void setFile1_name(String file1_name) {
+		this.file1_name = file1_name;
+	}
+	public String getFile2_name() {
+		return file2_name;
+	}
+	public void setFile2_name(String file2_name) {
+		this.file2_name = file2_name;
 	}
 	public String getFile1_path() {
 		return file1_path;

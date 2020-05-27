@@ -82,17 +82,25 @@ public class BbsController {
 				String filePath = CommonUtil.createFilePathFolder();
 				int i = 0;
 				for (MultipartFile file : files) {
+					String fileName = "";
+					String extension = "";
+					String path = "";
 					File convFile = null;
 					if(file.getSize() > 0) {
-						String fileName = CommonUtil.getUUID();
-						String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+						fileName = CommonUtil.getUUID();
+						extension = FilenameUtils.getExtension(file.getOriginalFilename());
 						convFile = new File(filePath.split("\\^\\^\\^")[0] + File.separator + fileName + "." + extension);
+						path = properties.getProperty("common.fileLinkPath") + "/" + filePath.split("\\^\\^\\^")[1] + "/" + fileName + "." + extension;
 						file.transferTo(convFile);
 					}
+					
+					//다중파일업로드로 변경 필요
 					if(i == 0) {
-						bbsFileContentsDto.setFile1_path(convFile.getAbsolutePath());
+						bbsFileContentsDto.setFile1_name(file.getOriginalFilename());
+						bbsFileContentsDto.setFile1_path(path);
 					}else if(i == 1) {
-						bbsFileContentsDto.setFile2_path(convFile.getAbsolutePath());
+						bbsFileContentsDto.setFile2_name(file.getOriginalFilename());
+						bbsFileContentsDto.setFile2_path(path);
 					}
 					i++;
 				}
@@ -120,5 +128,18 @@ public class BbsController {
 			e.printStackTrace();
 		}
 		return mapList;
+	}
+	
+	@RequestMapping(value = "/selectDbBbsFileDetailAsMap.json")
+	public @ResponseBody HashMap<String, Object> selectDbBbsFileDetailAsMap(BbsFileContentsDto bbsFileContentsDto) {
+
+		HashMap<String, Object> resultMap = null;
+		try {
+			resultMap = bbsServiceImpl.selectDbBbsFileContentsDetail(bbsFileContentsDto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultMap;
 	}
 }

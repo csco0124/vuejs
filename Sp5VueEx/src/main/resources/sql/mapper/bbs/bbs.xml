@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sp.app.bbs.dao.BbsDao">
 	
-	<select id="selectDbBbsListAsMap" resultType="com.sp.app.common.util.LowerKeyMap" parameterType="bbsDto">
+	<select id="selectDbBbsListAsMap" resultType="com.sp.app.common.util.LowerKeyListMap" parameterType="bbsDto">
 		SELECT SEQ,
 		       TITLE,
 		       CONTENTS,
@@ -24,15 +24,15 @@
 	</insert>
 	
 	<insert id="insertDbBbsFileContents" parameterType="bbsFileContentsDto">
-		INSERT INTO BBS_FILE_CONTENTS(CONTENTS, FILE1_PATH, FILE2_PATH)
-		VALUES(#{contents, jdbcType=VARCHAR}, #{file1_path, jdbcType=VARCHAR}, #{file2_path, jdbcType=VARCHAR})
+		INSERT INTO BBS_FILE_CONTENTS(CONTENTS, FILE1_NAME, FILE2_NAME, FILE1_PATH, FILE2_PATH)
+		VALUES(#{contents, jdbcType=VARCHAR}, #{file1_name, jdbcType=VARCHAR}, #{file2_name, jdbcType=VARCHAR}, #{file1_path, jdbcType=VARCHAR}, #{file2_path, jdbcType=VARCHAR})
 	</insert>
 	
-	<select id="selectDbBbsFileContentsList" resultType="com.sp.app.common.util.LowerKeyMap" parameterType="bbsDto">
+	<select id="selectDbBbsFileContentsList" resultType="com.sp.app.common.util.LowerKeyListMap" parameterType="bbsDto">
 		SELECT SEQ, INSERT_DATE FROM BBS_FILE_CONTENTS ORDER BY SEQ DESC
 	</select>
 	
 	<select id="selectDbBbsFileContentsDetail" resultType="com.sp.app.common.util.LowerKeyMap" parameterType="bbsDto">
-		SELECT SEQ, CONTENTS, FILE1_PATH, FILE2_PATH, INSERT_DATE FROM BBS_FILE_CONTENTS WHERE SEQ = #{seq, jdbcType=INTEGER}
+		SELECT SEQ, CONTENTS, FILE1_NAME, FILE2_NAME, FILE1_PATH, FILE2_PATH, INSERT_DATE FROM BBS_FILE_CONTENTS WHERE SEQ = #{seq, jdbcType=INTEGER}
 	</select>
 </mapper>

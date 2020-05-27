@@ -1,10 +1,9 @@
 package com.sp.app.common.util;
 
-import java.util.HashMap;
-
+import org.apache.commons.collections4.map.ListOrderedMap;
 import org.apache.commons.lang3.StringUtils;
 
-public class LowerKeyMap extends HashMap{
+public class LowerKeyListMap extends ListOrderedMap{
 	
 	/**
 	 * MyBatis에서 Map 형태로 받을 때 모든 컬럼을 소문자로 변환해주는 유틸

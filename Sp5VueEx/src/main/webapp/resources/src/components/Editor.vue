@@ -3,29 +3,31 @@
     <h1 class="page-header">Dashboard - Editor</h1>
     <h2 class="sub-header">Editor</h2>
     <button v-on:click="getAlert">안내창</button><button v-on:click="getAlert2">안내창2</button><br>
+    <form v-bind="inputForm">
       <div class="container" style="width:90%;">
-        <textarea class="summernote" id="summernote"><p>Seasons <b>coming up</b></p></textarea>
+        <textarea class="summernote" id="summernote" v-model="editorInitText"></textarea>
       </div>
       <div id="fileTemplate"></div>
 
       <button type="button" v-on:click="addFile" class="btn btn-outline-info">파일추가</button>
       <br><br>
       <button type="button" v-on:click="getAlert" class="btn btn-primary pull-left">저장</button>
-      <br><br>
-      <table class="table table-striped" v-clock>
-        <thead>
-           <tr>
-            <th>#seq</th>
-            <th>INSERT DATE</th>
-          </tr>
-        </thead>
-        <transition-group name="list" tag="tbody">
-          <tr v-for="(item) in contentsDataList" v-bind:key="item.seq">
-            <td>{{item.seq}}</td>
-            <td>{{item.insert_date}}</td>
-          </tr>
-        </transition-group>
-      </table>
+    </form>
+    <br><br>
+    <table class="table table-striped" v-clock>
+      <thead>
+          <tr>
+          <th>#문서번호</th>
+          <th>INSERT DATE</th>
+        </tr>
+      </thead>
+      <transition-group name="list" tag="tbody">
+        <router-link v-for="item in contentsDataList" v-bind:key="item.seq" tag="tr" v-bind:to="{path: '/Editor/'+item.seq}" style="cursor:pointer;">
+          <td>{{item.seq}}</td>
+          <td>{{item.insert_date}}</td>
+        </router-link>
+      </transition-group>
+    </table>
     <alert v-if="showAlert" v-on:close="showAlert = false">
       <div slot="contents">
         저장하시겠습니까?
@@ -50,6 +52,7 @@ export default {
       showAlert : false,
       showAlert2 : false,
       responseMsg : "",
+      editorInitText : "<p>Editor <b>init text!!</b></p>",
       contentsDataList : []
     }
   },
@@ -57,6 +60,10 @@ export default {
     
   },
   methods:{
+    formReset() {
+      document.getElementById("fileTemplate").innerHTML = "";
+      $('.summernote').summernote('code', this.editorInitText);
+    },
     getAlert() {
       this.showAlert = true;
     },
@@ -71,7 +78,6 @@ export default {
     },
     registContents(){
       this.showAlert = false;
-      this.responseMsg = "저장되었습니다.";
       const formData = new FormData();
       formData.append("contents", $('.summernote').summernote('code'));
 
@@ -93,6 +99,7 @@ export default {
         }
         this.getAlert2();
         this.getContentsList();
+        this.formReset();
       }).catch(e => {
         this.responseMsg = "[ERROR]" + e;
         this.getAlert2();
