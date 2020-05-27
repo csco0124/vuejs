@@ -20,7 +20,7 @@
           <th>INSERT DATE</th>
         </tr>
       </thead>
-      <transition-group name="list" tag="tbody">
+      <transition-group name="editorList" tag="tbody">
         <router-link v-for="item in contentsDataList" v-bind:key="item.seq" tag="tr" v-bind:to="{path: '/Editor/'+item.seq}" style="cursor:pointer;">
           <td>{{item.seq}}</td>
           <td>{{item.insert_date}}</td>
@@ -134,13 +134,13 @@ export default {
 </script>
 
 <style scope>
-.list-move {
+.editorList-move {
   transition: 1s;
 }
-.list-enter-active, .list-leave-active {
+.editorList-enter-active, .editorList-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to {
+.editorList-enter, .editorList-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }

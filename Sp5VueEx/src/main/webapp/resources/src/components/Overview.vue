@@ -8,7 +8,8 @@
         언어 선택 : 
     <button v-on:click="$i18n.locale='ko'">한국어</button>
     <button v-on:click="$i18n.locale='en'">English</button>
-    {{$t('message.hello')}} || 변수로 출력 : {{localeMessage}}
+    {{$t('message.hello')}}
+    <input type="text" v-bind:placeholder="$t('message.hello')">
   </div>
 </template>
 
@@ -26,6 +27,10 @@ export default {
   methods:{
     getPath() {
       this.server = this.$route.path;
+    },
+    getLocaleMsg(){
+      this.localeMessage = this.$i18n.t('message.hello');
+      alert(this.localeMessage);
     }
   },
   created: function () {
