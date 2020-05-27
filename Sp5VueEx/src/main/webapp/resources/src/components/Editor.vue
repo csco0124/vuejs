@@ -2,7 +2,6 @@
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Dashboard - Editor</h1>
     <h2 class="sub-header">Editor</h2>
-    <button v-on:click="getAlert">안내창</button><button v-on:click="getAlert2">안내창2</button><br>
     <form v-bind="inputForm">
       <div class="container" style="width:90%;">
         <textarea class="summernote" id="summernote" v-model="editorInitText"></textarea>
@@ -17,7 +16,8 @@
     <table class="table table-striped" v-clock>
       <thead>
           <tr>
-          <th>#문서번호</th>
+          <th>#문서번호</
+          th>
           <th>INSERT DATE</th>
         </tr>
       </thead>
@@ -30,7 +30,7 @@
     </table>
     <alert v-if="showAlert" v-on:close="showAlert = false">
       <div slot="contents">
-        저장하시겠습니까?
+        저장하시겠습니까?저장하시겠습니까?저장하시겠습니까?저장하시겠습니까?저장하시겠습니까?저장하시겠습니까?
       </div>
       <button slot="footer" type="button" v-on:click="registContents" class="btn btn-primary pull-right">저장</button>
 	  </alert>

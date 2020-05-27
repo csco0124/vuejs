@@ -4,6 +4,7 @@
 			<div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
+            <i class="fas fa-exclamation"></i><i class="fa fa-camera"></i> 
             <button type="button" @click="$emit('close')" class="close"><span >&times;</span></button>
           </div>
           <div class="modal-body">
@@ -41,7 +42,7 @@
 }
 
 .modal-container {
-  width: 600px;
+  width: 300px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
