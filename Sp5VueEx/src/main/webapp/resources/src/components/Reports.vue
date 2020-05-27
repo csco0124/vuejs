@@ -3,6 +3,18 @@
     <h1 class="page-header">Dashboard - Reports</h1>
     <button type="button" v-on:click="dataRegistPop" class="btn btn-primary pull-right">Regist</button>
     <button type="button" v-on:click="pageMove('/Overview')" class="btn btn-primary pull-right">go Home</button>
+    <br>
+    
+    <form class="form-inline">
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="searchTitle" class="sr-only">title</label>
+        <input type="text" id="searchTitle" class="form-control" v-model="searchTitle" v-on:keyup.enter="getDataList" placeholder="TITLE">
+        <label for="searchContents" class="sr-only">contents</label>
+        <input type="text" id="searchContents" class="form-control" v-model="searchContents" v-on:keyup.enter="getDataList" placeholder="CONTENTS">
+      </div>
+      <button type="submit" v-on:click="getDataList" class="btn btn-primary mb-2">Search</button>
+    </form>
+    
     <h2 class="sub-header">DATA LIST</h2>
     <div class="table-responsive">
       <table class="table table-striped" v-clock>
@@ -55,6 +67,8 @@ export default {
       showModal : false,
       title : "",
       contents : "",
+      searchTitle : "",
+      searchContents : "",
       dataList : []
     }
   },
@@ -69,7 +83,8 @@ export default {
     },
     getDataList(){
       let form = new FormData();
-      //form.append('title', '1');
+      form.append('title', this.searchTitle);
+      form.append('contents', this.searchContents);
       axios.post('/selectDbBbsListAsMap.json', form).then(response => {
         this.dataList = response.data; 
       });
@@ -83,6 +98,8 @@ export default {
         if(response.data.result != "S"){
 
         }else{
+          this.searchTitle = "";
+          this.searchContents = "";
           this.getDataList();
         }
       });
@@ -110,6 +127,8 @@ export default {
 }
 .list-enter, .list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  /* transform: translateY(30px); */
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 </style>

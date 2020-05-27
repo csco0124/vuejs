@@ -16,8 +16,7 @@
     <table class="table table-striped" v-clock>
       <thead>
           <tr>
-          <th>#문서번호</
-          th>
+          <th>#문서번호</th>
           <th>INSERT DATE</th>
         </tr>
       </thead>
