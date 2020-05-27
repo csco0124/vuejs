@@ -15,12 +15,14 @@ import Header from './components/Header.vue'
 import Left from './components/Left.vue'
 import Router from './router/Router'
 import store from './store/Store'
+import I18n from './i18n/i18n'
 import axios from 'axios'
 
 export default {
   name: 'app',
   store: store,
   router: Router,
+  i18n: I18n,
   data () {
     return {
       msg: ''

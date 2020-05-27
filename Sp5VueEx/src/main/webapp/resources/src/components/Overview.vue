@@ -3,7 +3,12 @@
     <h1 class="page-header">Dashboard - Overview</h1>
     <h2 class="sub-header">Overview</h2>
     <button v-on:click="getPath">현재 링크</button><br> 
-    {{server}}
+    {{server}}<br>
+
+        언어 선택 : 
+    <button v-on:click="$i18n.locale='ko'">한국어</button>
+    <button v-on:click="$i18n.locale='en'">English</button>
+    {{$t('message.hello')}} || 변수로 출력 : {{localeMessage}}
   </div>
 </template>
 
@@ -11,7 +16,8 @@
 export default {
   data(){
     return {
-      server : ""
+      server : "",
+      localeMessage : ""
     }
   },
   computed: {
@@ -24,6 +30,9 @@ export default {
   },
   created: function () {
       
+  },
+  mounted() {
+    this.localeMessage = this.$i18n.t('message.hello');
   }
 }
 </script>
