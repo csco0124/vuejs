@@ -12,7 +12,8 @@
 	<!-- Value Object(DTO) typeAliases 설정 -->
 	<!-- 타입 별칭은 자바 타입에 대한 좀더 짧은 이름이다. 오직 XML 설정에서만 사용되며, 타이핑을 줄이기 위해 존재한다. -->
 	<typeAliases>
-		<typeAlias alias="bbsDto" 				type="com.sp.app.bbs.dto.BbsDto" />		
+		<typeAlias alias="bbsDto" 				type="com.sp.app.bbs.dto.BbsDto" />
+		<typeAlias alias="bbsFileContentsDto" 	type="com.sp.app.bbs.dto.BbsFileContentsDto" />
 	</typeAliases>
 
 </configuration>

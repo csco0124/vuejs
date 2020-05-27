@@ -23,4 +23,16 @@
 		VALUES(#{title, jdbcType=VARCHAR}, #{contents, jdbcType=VARCHAR})
 	</insert>
 	
+	<insert id="insertDbBbsFileContents" parameterType="bbsFileContentsDto">
+		INSERT INTO BBS_FILE_CONTENTS(CONTENTS, FILE1_PATH, FILE2_PATH)
+		VALUES(#{contents, jdbcType=VARCHAR}, #{file1_path, jdbcType=VARCHAR}, #{file2_path, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="selectDbBbsFileContentsList" resultType="com.sp.app.common.util.LowerKeyMap" parameterType="bbsDto">
+		SELECT SEQ, INSERT_DATE FROM BBS_FILE_CONTENTS ORDER BY SEQ DESC
+	</select>
+	
+	<select id="selectDbBbsFileContentsDetail" resultType="com.sp.app.common.util.LowerKeyMap" parameterType="bbsDto">
+		SELECT SEQ, CONTENTS, FILE1_PATH, FILE2_PATH, INSERT_DATE FROM BBS_FILE_CONTENTS WHERE SEQ = #{seq, jdbcType=INTEGER}
+	</select>
 </mapper>
