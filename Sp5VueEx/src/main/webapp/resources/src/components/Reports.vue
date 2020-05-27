@@ -24,6 +24,7 @@
             <th>TITLE</th>
             <th>CONTENTS</th>
             <th>INSERT DATE</th>
+            <th>DELETE?</th>
           </tr>
         </thead>
         <transition-group name="list" tag="tbody">
@@ -32,6 +33,7 @@
             <td>{{item.title}}</td>
             <td>{{item.contents}}</td>
             <td>{{item.insert_date}}</td>
+            <td><a style="cursor:pointer;"><i class="far fa-trash-alt" v-on:click="deleteItem(item.seq)"></i></a></td>
           </tr>
         </transition-group>
       </table>
@@ -104,6 +106,17 @@ export default {
         }
       });
     },
+    deleteItem(seq){
+      let form = new FormData();
+      form.append('seq', seq);
+      axios.post('/deleteDbBbsList.json', form).then(response => {
+        if(response.data.result != "S"){
+
+        }else{
+          this.getDataList();
+        }
+      });
+    },
     pageMove(path){
       alert("현재 Path1 : " + this.$route.path);
       this.$emit('go-page', path);
@@ -127,7 +140,6 @@ export default {
 }
 .list-enter, .list-leave-to {
   opacity: 0;
-  /* transform: translateY(30px); */
   left: 50%;
   transform: translate(-50%, 0);
 }

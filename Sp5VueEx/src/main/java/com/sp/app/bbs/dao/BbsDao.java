@@ -13,10 +13,13 @@ public interface BbsDao {
 	public List<HashMap<String, Object>> selectDbBbsListAsMap(BbsDto bbsDto) throws DataAccessException;
 	
 	public void insertDbBbsList(BbsDto bbsDto) throws DataAccessException;
+
+	public void deleteDbBbsFileContents(BbsDto bbsDto)throws DataAccessException;
 	
 	public void insertDbBbsFileContents(BbsFileContentsDto bbsFileContentsDto) throws DataAccessException;
 	
 	public List<HashMap<String, Object>> selectDbBbsFileContentsList(BbsFileContentsDto bbsFileContentsDto) throws DataAccessException;
 	
 	public HashMap<String, Object> selectDbBbsFileContentsDetail(BbsFileContentsDto bbsFileContentsDto) throws DataAccessException;
+
 }

@@ -69,6 +69,22 @@ public class BbsController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value = "/deleteDbBbsList.json")
+	public @ResponseBody HashMap<String, Object> deleteDbBbsList(BbsDto bbsDto) {
+
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			bbsServiceImpl.deleteDbBbsList(bbsDto);
+			resultMap.put("result", "S");
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMap.put("result", "E");
+			resultMap.put("errorMsg", e.getMessage());
+		}
+		return resultMap;
+	}
+	
+	
 	@RequestMapping(value = "/editorUpload")
 	public @ResponseBody HashMap<String, Object> editorUpload(Model model, @RequestParam("files") MultipartFile[] files, @RequestParam Map<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();

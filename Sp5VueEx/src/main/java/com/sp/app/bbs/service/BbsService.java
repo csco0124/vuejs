@@ -25,6 +25,10 @@ public class BbsService {
 	public void insertDbBbsList(BbsDto bbsDto) throws Exception {
 		bbsDao.insertDbBbsList(bbsDto);
 	}
+
+	public void deleteDbBbsList(BbsDto bbsDto) throws Exception {
+		bbsDao.deleteDbBbsFileContents(bbsDto);
+	}
 	
 	public void insertDbBbsFileContents(BbsFileContentsDto bbsFileContentsDto) throws Exception {
 		bbsDao.insertDbBbsFileContents(bbsFileContentsDto);
@@ -37,4 +41,5 @@ public class BbsService {
 	public HashMap<String, Object> selectDbBbsFileContentsDetail(BbsFileContentsDto bbsFileContentsDto) throws Exception {
 		return bbsDao.selectDbBbsFileContentsDetail(bbsFileContentsDto);
 	}
+
 }

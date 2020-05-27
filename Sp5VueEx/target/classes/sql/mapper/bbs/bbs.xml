@@ -23,6 +23,10 @@
 		VALUES(#{title, jdbcType=VARCHAR}, #{contents, jdbcType=VARCHAR})
 	</insert>
 	
+	<insert id="deleteDbBbsFileContents" parameterType="bbsDto">
+		DELETE LIST WHERE SEQ = #{seq, jdbcType=INTEGER}
+	</insert>
+	
 	<insert id="insertDbBbsFileContents" parameterType="bbsFileContentsDto">
 		INSERT INTO BBS_FILE_CONTENTS(CONTENTS, FILE1_NAME, FILE2_NAME, FILE1_PATH, FILE2_PATH)
 		VALUES(#{contents, jdbcType=VARCHAR}, #{file1_name, jdbcType=VARCHAR}, #{file2_name, jdbcType=VARCHAR}, #{file1_path, jdbcType=VARCHAR}, #{file2_path, jdbcType=VARCHAR})
