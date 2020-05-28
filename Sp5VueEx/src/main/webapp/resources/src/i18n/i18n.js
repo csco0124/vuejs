@@ -7,12 +7,14 @@ const messages = {
   en: {
     message: {
       hello: 'hello world',
+      lenguage: 'lenguage',
       currentLink: 'Current link'
     }
   },
   ko: {
     message: {
       hello: '안녕하세요',
+      lenguage: '언어',
       currentLink: '현재링크'
     }
   }
