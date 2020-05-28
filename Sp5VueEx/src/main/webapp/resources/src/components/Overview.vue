@@ -5,7 +5,7 @@
     <button v-on:click="getPath">{{$t('message.currentLink')}}</button><br> 
     {{server}}<br>
 
-    i18n : {{$t('message.hello')}} || Input 출력 : <input type="text" v-bind:placeholder="$t('message.hello')">
+    i18n : {{$t('message.hello')}} || Input Type : <input type="text" v-bind:placeholder="$t('message.hello')">
   </div>
 </template>
 
