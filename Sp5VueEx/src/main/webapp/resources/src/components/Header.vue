@@ -13,7 +13,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <div style="float:left; padding:17px 0px 0px 0px; color:white; font-size:12px; color:#9d9d9d;" >{{$t('message.lenguage')}} : </div>
+            <div style="float:left; padding:17px 0px 0px 0px; color:white; font-size:12px; color:#9d9d9d;" >{{$t('message.language')}} : </div>
             <div style="float:right; padding:7px 0px 0px 0px;">
             <select class="form-control" style="float:right;" v-on:change="changeLanguage($event)" v-model="languageVal">
               <option value="en">영어</option>
