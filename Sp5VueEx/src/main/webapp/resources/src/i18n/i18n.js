@@ -6,12 +6,14 @@ Vue.use(VueI18n);
 const messages = {
   en: {
     message: {
-      hello: 'hello world'
+      hello: 'hello world',
+      currentLink: 'Current link'
     }
   },
   ko: {
     message: {
-      hello: '안녕하세요'
+      hello: '안녕하세요',
+      currentLink: '현재링크'
     }
   }
 }
