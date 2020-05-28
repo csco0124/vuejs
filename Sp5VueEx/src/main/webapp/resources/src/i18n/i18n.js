@@ -7,7 +7,7 @@ const messages = {
   en: {
     message: {
       hello: 'hello world',
-      lenguage: 'lenguage',
+      lenguage: 'language',
       currentLink: 'Current link'
     }
   },
