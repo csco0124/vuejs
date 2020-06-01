@@ -120,8 +120,8 @@ export default {
       lang: 'ko-KR',
       disableDragAndDrop: false,	//Drag and Drop 기능 없애기 여부
       callbacks: {
-            onImageUpload: function(files) {
-              summerImageUpload(".summernote", files);
+        onImageUpload: function(files) {
+          summerImageUpload(".summernote", files);
         }
       }
     });
