@@ -43,6 +43,10 @@
           refresh_token = obj.refresh_token;
           token_type = obj.token_type;
           expires_in = obj.expires_in;
+          document.getElementById("access_token").value = access_token;
+          document.getElementById("refresh_token").value = refresh_token;
+          document.getElementById("token_type").value = token_type;
+          document.getElementById("expires_in").value = expires_in;
       }
   });
 
@@ -58,11 +62,23 @@
       dataType : "json",
       url : refreshUrl,
       success : function(data) {
-          console.log(data);
+          var obj = JSON.parse(data);
+          access_token = obj.access_token;
+          refresh_token = obj.refresh_token;
+          token_type = obj.token_type;
+          expires_in = obj.expires_in;
+          document.getElementById("access_token").value = access_token;
+          document.getElementById("refresh_token").value = refresh_token;
+          document.getElementById("token_type").value = token_type;
+          document.getElementById("expires_in").value = expires_in;
       }
   });
   }
 </script>
 </body>
-<a href="javascript:void(0)" onclick="refreshToken();">갱신</a>
+<a href="javascript:void(0)" onclick="refreshToken();">갱신</a><br>
+access_token : <input type="text" id="access_token" size="100" readonly><br>
+refresh_token : <input type="text" id="refresh_token" size="100" readonly><br>
+token_type : <input type="text" id="token_type" readonly><br>
+expires_in : <input type="text" id="expires_in" readonly>
 </html>
