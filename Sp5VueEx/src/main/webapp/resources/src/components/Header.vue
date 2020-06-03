@@ -13,6 +13,9 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
+            <div style="float:left; padding:10px 0px 0px 0px;" >
+              <img src='/img/naver_login.png' v-on:click="loginPop" style="float:right; width: 30px;"/>
+            </div>
             <div style="float:left; padding:17px 0px 0px 0px; color:white; font-size:12px; color:#9d9d9d;" >{{$t('message.language')}} : </div>
             <div style="float:right; padding:7px 0px 0px 0px;">
             <select class="form-control" style="float:right;" v-on:change="changeLanguage($event)" v-model="languageVal">
@@ -39,13 +42,20 @@ export default {
   methods: {
       changeLanguage(event) {
         this.$i18n.locale = event.target.value;
+      },
+      loginPop(){
+        document.getElementById("naver_id_login_anchor").click();
       }
+  },
+  created() {
+    
   },
   mounted() {
     console.log(this.$i18n.locale);
     this.languageVal = this.$i18n.locale;
   }
 }
+
 </script>
 
 <style scope>
