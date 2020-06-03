@@ -44,7 +44,7 @@ export default {
         this.$i18n.locale = event.target.value;
       },
       loginPop(){
-        document.getElementById("naver_id_login_anchor").click();
+        naverLogin();
       }
   },
   created() {

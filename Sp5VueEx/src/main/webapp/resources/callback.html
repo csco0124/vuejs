@@ -3,20 +3,66 @@
 <head>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ajax-cross-origin.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
   var naver_id_login = new naver_id_login("w_Ear77mJxBPfzwNE7AX", "http://localhost/vue/callback.html");
+  var state = naver_id_login.getUniqState();
   // 접근 토큰 값 출력
-  alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
-  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+  /*naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
   function naverSignInCallback() {
     alert(naver_id_login.getProfileData('email'));
     alert(naver_id_login.getProfileData('nickname'));
     alert(naver_id_login.getProfileData('age'));
+  }*/
+
+  var access_token;
+  var refresh_token;
+  var token_type;
+  var expires_in;
+
+  var url = "https://nid.naver.com/oauth2.0/token"+
+            "?grant_type=authorization_code"+
+            "&client_id=w_Ear77mJxBPfzwNE7AX"+
+            "&client_secret=xPDWFJjLEX"+
+            "&code="+naver_id_login.oauthParams.code+
+            "&state="+encodeURI("klgg1lsvakmlevk-34324welrkwelrwer-213123");
+  console.log(url);
+  $.ajax({
+      crossOrigin : true,
+      dataType : "json",
+      url : url,
+      success : function(data) {
+        
+        var obj = JSON.parse(data);
+        console.log(obj.refresh_token);
+          access_token = obj.access_token;
+          refresh_token = obj.refresh_token;
+          token_type = obj.token_type;
+          expires_in = obj.expires_in;
+      }
+  });
+
+  function refreshToken(){
+  var refreshUrl = "https://nid.naver.com/oauth2.0/token"+
+            "?grant_type=refresh_token"+
+            "&client_id=w_Ear77mJxBPfzwNE7AX"+
+            "&client_secret=xPDWFJjLEX"+
+            "&refresh_token="+refresh_token;
+  console.log(refreshUrl);
+  $.ajax({
+      crossOrigin : true,
+      dataType : "json",
+      url : refreshUrl,
+      success : function(data) {
+          console.log(data);
+      }
+  });
   }
 </script>
 </body>
+<a href="javascript:void(0)" onclick="refreshToken();">갱신</a>
 </html>

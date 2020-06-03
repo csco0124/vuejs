@@ -32,13 +32,16 @@
     <script src="/vue/dist/build.js"></script>
     <div id="naver_id_login" style="display:none;"></div>
     <script type="text/javascript">
-      var naver_id_login = new naver_id_login("w_Ear77mJxBPfzwNE7AX", "http://localhost/vue/callback.html");
-      var state = naver_id_login.getUniqState();
-      naver_id_login.setButton("white", 2,40);
-      naver_id_login.setDomain("http://localhost");
-      naver_id_login.setState(state);
-      naver_id_login.setPopup();
-      naver_id_login.init_naver_id_login();
+    var naver_id_login = new naver_id_login("w_Ear77mJxBPfzwNE7AX", "http://localhost/vue/callback.html");
+    var state = naver_id_login.getUniqState();
+    function naverLogin(){
+      var url = "https://nid.naver.com/oauth2.0/authorize" + 
+      "?response_type=code" +
+      "&client_id=w_Ear77mJxBPfzwNE7AX" +
+      "&redirect_uri=http://localhost/vue/callback.html" +
+      "&state=" + state;
+      window.open(url, "neverLoginPop", "width=500,height=600");
+    }
     </script>
   </body>
 </html>
