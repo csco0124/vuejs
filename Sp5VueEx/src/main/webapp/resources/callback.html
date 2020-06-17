@@ -51,28 +51,28 @@
   });
 
   function refreshToken(){
-  var refreshUrl = "https://nid.naver.com/oauth2.0/token"+
-            "?grant_type=refresh_token"+
-            "&client_id=w_Ear77mJxBPfzwNE7AX"+
-            "&client_secret=xPDWFJjLEX"+
-            "&refresh_token="+refresh_token;
-  console.log(refreshUrl);
-  $.ajax({
-      crossOrigin : true,
-      dataType : "json",
-      url : refreshUrl,
-      success : function(data) {
-          var obj = JSON.parse(data);
-          access_token = obj.access_token;
-          refresh_token = obj.refresh_token;
-          token_type = obj.token_type;
-          expires_in = obj.expires_in;
-          document.getElementById("access_token").value = access_token;
-          document.getElementById("refresh_token").value = refresh_token;
-          document.getElementById("token_type").value = token_type;
-          document.getElementById("expires_in").value = expires_in;
-      }
-  });
+    var refreshUrl = "https://nid.naver.com/oauth2.0/token"+
+              "?grant_type=refresh_token"+
+              "&client_id=w_Ear77mJxBPfzwNE7AX"+
+              "&client_secret=xPDWFJjLEX"+
+              "&refresh_token="+refresh_token;
+    console.log(refreshUrl);
+    $.ajax({
+        crossOrigin : true,
+        dataType : "json",
+        url : refreshUrl,
+        success : function(data) {
+            var obj = JSON.parse(data);
+            access_token = obj.access_token;
+            refresh_token = obj.refresh_token;
+            token_type = obj.token_type;
+            expires_in = obj.expires_in;
+            document.getElementById("access_token").value = access_token;
+            document.getElementById("refresh_token").value = refresh_token;
+            document.getElementById("token_type").value = token_type;
+            document.getElementById("expires_in").value = expires_in;
+        }
+    });
   }
 </script>
 </body>

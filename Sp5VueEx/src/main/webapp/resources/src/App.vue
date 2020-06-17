@@ -13,6 +13,7 @@
 <script>
 import Header from './components/Header.vue'
 import Left from './components/Left.vue'
+import 'es6-promise/auto'
 import Router from './router/Router'
 import store from './store/Store'
 import I18n from './i18n/i18n'

@@ -5,15 +5,15 @@
     <button type="button" v-on:click="pageMove('/Overview')" class="btn btn-primary pull-right">go Home</button>
     <br>
     
-    <form class="form-inline">
+    <v-form class="form-inline">
       <div class="form-group mx-sm-3 mb-2">
         <label for="searchTitle" class="sr-only">title</label>
-        <input type="text" id="searchTitle" class="form-control" v-model="searchTitle" v-on:keyup.enter="getDataList" placeholder="TITLE">
+        <input type="text" id="searchTitle" class="form-control" v-model="searchTitle" v-on:keyup="getDataList" placeholder="TITLE">
         <label for="searchContents" class="sr-only">contents</label>
         <input type="text" id="searchContents" class="form-control" v-model="searchContents" v-on:keyup.enter="getDataList" placeholder="CONTENTS">
       </div>
       <button type="submit" v-on:click="getDataList" class="btn btn-primary mb-2">Search</button>
-    </form>
+    </v-form>
     
     <h2 class="sub-header">DATA LIST</h2>
     <div class="table-responsive">
